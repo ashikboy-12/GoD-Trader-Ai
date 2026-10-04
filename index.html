@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#05070d">
+
+    <title>GodTrader AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="appLoader">
+        <div class="loader-box">
+            <div class="loader-logo">G</div>
+            <div class="loader-title">GodTrader AI</div>
+            <div class="loader-text">Loading Trading Engine...</div>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+
+    <!-- MAIN APP -->
+    <div id="app">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="brand">
+                <div class="brand-logo">G</div>
+
+                <div>
+                    <div class="brand-name">GodTrader AI</div>
+                    <div class="brand-subtitle">
+                        Intelligent Market Analysis
+                    </div>
+                </div>
+            </div>
+
+            <button id="proButton" class="pro-button">
+                PRO
+            </button>
+
+        </header>
+
+
+        <!-- MARKET SELECTOR -->
+        <main class="main-container">
+
+            <section class="market-card">
+
+                <div class="section-label">
+                    SELECT MARKET
+                </div>
+
+                <button id="marketSelector" class="market-selector">
+
+                    <div>
+                        <div id="selectedMarket">
+                            EUR/USD
+                        </div>
+
+                        <div id="selectedMarketType">
+                            REAL MARKET
+                        </div>
+                    </div>
+
+                    <div class="arrow">
+                        ›
+                    </div>
+
+                </button>
+
+            </section>
+
+
+            <!-- DURATION -->
+            <section class="duration-card">
+
+                <div class="section-label">
+                    TRADE DURATION
+                </div>
+
+                <div class="duration-buttons">
+
+                    <button class="duration-btn active" data-duration="1">
+                        1M
+                    </button>
+
+                    <button class="duration-btn" data-duration="10">
+                        10M
+                    </button>
+
+                    <button class="duration-btn" data-duration="15">
+                        15M
+                    </button>
+
+                    <button class="duration-btn" data-duration="20">
+                        20M
+                    </button>
+
+                    <button class="duration-btn" data-duration="30">
+                        30M
+                    </button>
+
+                </div>
+
+                <div class="duration-info">
+                    Selected:
+                    <span id="selectedDuration">1</span>
+                    minute
+                </div>
+
+                <div id="durationText"></div>
+
+            </section>
+
+
+            <!-- ANALYSIS STATUS -->
+            <section class="status-card">
+
+                <div class="status-row">
+
+                    <div>
+                        <div class="section-label">
+                            ANALYSIS STATUS
+                        </div>
+
+                        <div id="analysisStatus">
+                            Ready
+                        </div>
+                    </div>
+
+                    <div class="status-dot"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SIGNAL -->
+            <section class="signal-card">
+
+                <div class="section-label">
+                    CURRENT SIGNAL
+                </div>
+
+                <div id="signalValue" class="signal-value">
+                    NO TRADE
+                </div>
+
+                <div id="signalDescription" class="signal-description">
+                    Select a market and start analysis.
+                </div>
+
+            </section>
+
+
+            <!-- CONFIDENCE -->
+            <section class="data-card">
+
+                <div class="data-header">
+                    <span>CONFIDENCE</span>
+                    <strong id="confidenceValue">0%</strong>
+                </div>
+
+                <div class="confidence-track">
+                    <div
+                        id="confidenceBar"
+                        class="confidence-bar"
+                        style="width:0%"
+                    ></div>
+                </div>
+
+            </section>
+
+
+            <!-- MARKET ANALYSIS -->
+            <section class="analysis-card">
+
+                <div class="section-label">
+                    MARKET ANALYSIS
+                </div>
+
+                <div class="analysis-grid">
+
+                    <div class="analysis-item">
+                        <span>Trend</span>
+                        <strong id="trendValue">--</strong>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Momentum</span>
+                        <strong id="momentumValue">--</strong>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Volatility</span>
+                        <strong id="volatilityValue">--</strong>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Structure</span>
+                        <strong id="structureValue">--</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- COUNTDOWN -->
+            <section class="countdown-card">
+
+                <div class="section-label">
+                    NEXT CANDLE
+                </div>
+
+                <div id="countdown">
+                    --
+                </div>
+
+                <div id="countdownText">
+                    Waiting for analysis
+                </div>
+
+            </section>
+
+
+            <!-- ANALYZE BUTTON -->
+            <button id="analyzeButton" class="analyze-button">
+                ANALYZE MARKET
+            </button>
+
+
+            <!-- PRO -->
+            <section class="pro-card">
+
+                <div class="pro-title">
+                    GodTrader PRO
+                </div>
+
+                <div class="pro-text">
+                    Advanced market analysis and professional tools.
+                </div>
+
+                <button id="proCardButton" class="pro-button-large">
+                    ACTIVATE PRO
+                </button>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- MARKET MODAL -->
+    <div id="marketModal" class="modal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <div>
+                    <div class="modal-title">
+                        Select Market
+                    </div>
+
+                    <div class="modal-subtitle">
+                        Choose a market to analyze
+                    </div>
+                </div>
+
+                <button id="closeMarketModal" class="close-button">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="market-section">
+
+                <div class="market-section-title">
+                    REAL MARKETS
+                </div>
+
+                <div id="realMarketList">
+                </div>
+
+            </div>
+
+
+            <div class="market-section">
+
+                <div class="market-section-title">
+                    OTC MARKETS
+                </div>
+
+                <div id="otcMarketList">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRO MODAL -->
+    <div id="proModal" class="modal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <div>
+                    <div class="modal-title">
+                        GodTrader PRO
+                    </div>
+
+                    <div class="modal-subtitle">
+                        Enter your activation code
+                    </div>
+                </div>
+
+                <button id="closeProModal" class="close-button">
+                    ×
+                </button>
+
+            </div>
+
+            <input
+                id="proCodeInput"
+                type="text"
+                placeholder="Activation code"
+                autocomplete="off"
+            >
+
+            <button id="activateProButton">
+                ACTIVATE
+            </button>
+
+            <div id="proMessage"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SAFETY LOADER FALLBACK -->
+    <script>
+        setTimeout(function () {
+
+            var loader = document.getElementById("appLoader");
+
+            if (loader) {
+                loader.style.display = "none";
+            }
+
+        }, 2500);
+    </script>
+
+
+    <!-- IMPORTANT: LOAD ORDER -->
+    <script src="Config.js"></script>
+    <script src="MarketData.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

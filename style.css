@@ -1,0 +1,923 @@
+/* =========================================================
+   GODTRADER AI — PREMIUM MOBILE UI
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(circle at 50% -10%, rgba(50, 90, 180, 0.20), transparent 35%),
+        #05070d;
+    color: #f5f7ff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   LOADER
+   ========================================================= */
+
+#appLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #05070d;
+}
+
+.loader-box {
+    width: min(86%, 360px);
+    text-align: center;
+}
+
+.loader-logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(90, 150, 255, 0.55);
+    border-radius: 22px;
+
+    background: linear-gradient(
+        145deg,
+        #182b58,
+        #08101f
+    );
+
+    box-shadow:
+        0 0 35px rgba(50, 120, 255, 0.25),
+        inset 0 0 20px rgba(255,255,255,0.04);
+
+    color: #79aaff;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+.loader-title {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.loader-text {
+    margin-top: 8px;
+    color: #7f8ba3;
+    font-size: 13px;
+}
+
+.loader-line {
+    width: 100%;
+    height: 3px;
+    margin-top: 22px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #121827;
+}
+
+.loader-line::after {
+    content: "";
+    display: block;
+    width: 40%;
+    height: 100%;
+    border-radius: inherit;
+    background: #5793ff;
+    animation: loaderMove 1.2s infinite ease-in-out;
+}
+
+@keyframes loaderMove {
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(280%);
+    }
+}
+
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 16px;
+
+    background: rgba(5, 7, 13, 0.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+.brand-logo {
+    width: 43px;
+    height: 43px;
+    flex: 0 0 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        145deg,
+        #315fb9,
+        #101b35
+    );
+
+    border: 1px solid rgba(100,150,255,0.45);
+
+    color: #8db8ff;
+    font-size: 22px;
+    font-weight: 900;
+
+    box-shadow: 0 0 22px rgba(50,120,255,0.18);
+}
+
+.brand-name {
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.brand-subtitle {
+    margin-top: 3px;
+    color: #727e95;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.pro-button {
+    min-width: 54px;
+    height: 32px;
+
+    border: 1px solid rgba(255,190,80,0.5);
+    border-radius: 10px;
+
+    background: linear-gradient(
+        145deg,
+        #2a2110,
+        #171208
+    );
+
+    color: #ffc85c;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.main-container {
+    width: min(100% - 28px, 520px);
+    margin: 0 auto;
+    padding-top: 18px;
+}
+
+
+/* =========================================================
+   COMMON CARDS
+   ========================================================= */
+
+.market-card,
+.duration-card,
+.status-card,
+.signal-card,
+.data-card,
+.analysis-card,
+.countdown-card,
+.pro-card {
+
+    width: 100%;
+
+    margin-bottom: 13px;
+    padding: 16px;
+
+    border: 1px solid rgba(255,255,255,0.065);
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,27,43,0.94),
+            rgba(9,13,23,0.96)
+        );
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.20),
+        inset 0 1px rgba(255,255,255,0.025);
+}
+
+.section-label {
+    margin-bottom: 10px;
+
+    color: #707c94;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+
+/* =========================================================
+   MARKET SELECTOR
+   ========================================================= */
+
+.market-selector {
+    width: 100%;
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 14px;
+
+    border: 1px solid rgba(90,140,255,0.18);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.025);
+
+    color: #fff;
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.market-selector:active {
+    transform: scale(0.985);
+}
+
+#selectedMarket {
+    font-size: 19px;
+    font-weight: 800;
+}
+
+#selectedMarketType {
+    margin-top: 5px;
+    color: #6f9fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.arrow {
+    color: #7faeff;
+    font-size: 30px;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   DURATION
+   ========================================================= */
+
+.duration-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+}
+
+.duration-btn {
+    min-height: 40px;
+
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+
+    background: #0d1320;
+
+    color: #78859c;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.duration-btn.active {
+    border-color: rgba(91,145,255,0.65);
+
+    background:
+        linear-gradient(
+            145deg,
+            #214887,
+            #14284c
+        );
+
+    color: #fff;
+
+    box-shadow: 0 0 18px rgba(60,120,255,0.18);
+}
+
+.duration-info {
+    margin-top: 12px;
+    color: #66738a;
+    font-size: 11px;
+}
+
+#selectedDuration {
+    color: #91b7ff;
+    font-weight: 800;
+}
+
+#durationText {
+    display: none;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#analysisStatus {
+    color: #c6d0e2;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #46d58a;
+
+    box-shadow:
+        0 0 12px rgba(70,213,138,0.7);
+
+    animation: statusPulse 1.8s infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   SIGNAL
+   ========================================================= */
+
+.signal-card {
+    position: relative;
+    overflow: hidden;
+
+    text-align: center;
+
+    padding: 24px 16px;
+}
+
+.signal-card::before {
+    content: "";
+
+    position: absolute;
+    width: 160px;
+    height: 160px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(65,120,255,0.07);
+
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+.signal-card .section-label,
+.signal-value,
+.signal-description {
+    position: relative;
+}
+
+.signal-value {
+    margin-top: 6px;
+
+    font-size: clamp(34px, 10vw, 52px);
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    color: #91b7ff;
+
+    text-shadow: 0 0 25px rgba(80,140,255,0.18);
+}
+
+.signal-description {
+    margin-top: 7px;
+
+    color: #737f96;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CONFIDENCE
+   ========================================================= */
+
+.data-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #78849b;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+#confidenceValue {
+    color: #b9cfff;
+    font-size: 15px;
+}
+
+.confidence-track {
+    width: 100%;
+    height: 8px;
+
+    margin-top: 12px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #0a0f1a;
+}
+
+.confidence-bar {
+    height: 100%;
+    min-width: 0;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #315fb8,
+        #73a4ff
+    );
+
+    transition: width 0.5s ease;
+}
+
+
+/* =========================================================
+   ANALYSIS GRID
+   ========================================================= */
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.analysis-item {
+    min-height: 70px;
+
+    padding: 13px;
+
+    border: 1px solid rgba(255,255,255,0.045);
+    border-radius: 13px;
+
+    background: rgba(255,255,255,0.018);
+}
+
+.analysis-item span {
+    display: block;
+
+    color: #657187;
+    font-size: 10px;
+}
+
+.analysis-item strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #dbe5f7;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   COUNTDOWN
+   ========================================================= */
+
+.countdown-card {
+    text-align: center;
+}
+
+#countdown {
+    margin-top: 3px;
+
+    color: #8eb6ff;
+
+    font-size: 35px;
+    font-weight: 900;
+}
+
+#countdownText {
+    margin-top: 4px;
+
+    color: #657187;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   ANALYZE BUTTON
+   ========================================================= */
+
+.analyze-button {
+    width: 100%;
+    min-height: 58px;
+
+    margin: 4px 0 14px;
+
+    border: 1px solid rgba(104,158,255,0.55);
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #2d5eaf,
+            #17335f
+        );
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 10px 28px rgba(35,90,180,0.20);
+
+    cursor: pointer;
+}
+
+.analyze-button:active {
+    transform: scale(0.985);
+}
+
+
+/* =========================================================
+   PRO CARD
+   ========================================================= */
+
+.pro-card {
+    border-color: rgba(255,190,80,0.12);
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255,190,70,0.08),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(28,25,18,0.95),
+            rgba(12,13,17,0.98)
+        );
+}
+
+.pro-title {
+    color: #ffc95d;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.pro-text {
+    margin-top: 7px;
+
+    color: #777f8e;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.pro-button-large {
+    width: 100%;
+    min-height: 44px;
+
+    margin-top: 14px;
+
+    border: 1px solid rgba(255,194,78,0.4);
+    border-radius: 12px;
+
+    background: #1c180e;
+
+    color: #ffc95d;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+
+    padding: 12px;
+
+    background: rgba(0,0,0,0.68);
+    backdrop-filter: blur(7px);
+}
+
+.modal.active,
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: min(100%, 520px);
+    max-height: 88vh;
+
+    overflow-y: auto;
+
+    padding: 18px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px 22px 16px 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #121a2a,
+            #080c15
+        );
+
+    box-shadow: 0 -15px 50px rgba(0,0,0,0.45);
+}
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.modal-subtitle {
+    margin-top: 5px;
+
+    color: #68748b;
+    font-size: 10px;
+}
+
+.close-button {
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+
+    background: #111827;
+
+    color: #8995aa;
+
+    font-size: 22px;
+}
+
+.market-section {
+    margin-bottom: 20px;
+}
+
+.market-section-title {
+    margin-bottom: 9px;
+
+    color: #6f7b92;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+#realMarketList,
+#otcMarketList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.market-item,
+.market-option {
+    width: 100%;
+    min-height: 48px;
+
+    padding: 10px;
+
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+
+    background: #0c1320;
+
+    color: #cbd5e7;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   PRO INPUT
+   ========================================================= */
+
+#proCodeInput {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 13px;
+
+    outline: none;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+
+    background: #080d17;
+
+    color: #fff;
+
+    font-size: 13px;
+}
+
+#proCodeInput:focus {
+    border-color: rgba(95,145,255,0.55);
+}
+
+#activateProButton {
+    width: 100%;
+    height: 48px;
+
+    margin-top: 10px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: #315fae;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+#proMessage {
+    min-height: 18px;
+
+    margin-top: 10px;
+
+    color: #8d9ab0;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .main-container {
+        width: calc(100% - 20px);
+    }
+
+    .topbar {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .brand-subtitle {
+        font-size: 9px;
+    }
+
+    .brand-logo {
+        width: 39px;
+        height: 39px;
+        flex-basis: 39px;
+    }
+
+    .duration-buttons {
+        gap: 4px;
+    }
+
+    .duration-btn {
+        font-size: 10px;
+    }
+
+    .signal-value {
+        font-size: 34px;
+    }
+}
+
+
+/* =========================================================
+   SAFE BUTTON BEHAVIOR
+   ========================================================= */
+
+button {
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #26324a;
+    border-radius: 10px;
+}
